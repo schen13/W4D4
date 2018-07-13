@@ -1,0 +1,21 @@
+<% action = (type == :signup ? users_url : session_url) %>
+<% button_txt = (type == :signup ? 'Sign Up' : 'Log In') %>
+
+<form action='<%= action %>' method="post">
+  <!-- <input type="hidden" name="_method" value="<%#= method %>"> -->
+  <%= auth_token %>
+  <label for="email">
+    Email
+    <input type="text" name="user[email]" value="">
+  </label>
+
+  <br>
+  <br>
+
+  <label for="password">
+    Password
+    <input type="password" name="user[password]" value="">
+  </label>
+
+  <input type="submit" value="<%= button_txt %>">
+</form>

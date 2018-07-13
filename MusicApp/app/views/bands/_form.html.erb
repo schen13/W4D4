@@ -1,0 +1,23 @@
+<%= display_errors %>
+
+<% action = (type == :new ? bands_url : band_url(band)) %>
+<% method = (type == :new ? 'post' : 'patch') %>
+<% button_txt = (type == :new ? 'Add' : 'Edit') %>
+<% text_label = (type == :new ? 'Enter Band Name:' : 'Edit Band Name (' + band.name + ')') %>
+<br>
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= auth_token %>
+  <label for="band_name">
+    <%= text_label %>
+    <br>
+    <br>
+    <input type="text" name="band[name]" value="">
+  </label>
+  <input type="submit" value="<%= button_txt %> Band">
+</form>
+
+<br>
+<br>
+<a href="<%= bands_url %>">Back to Band List</a>

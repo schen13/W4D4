@@ -1,0 +1,8 @@
+<h3>Album Page</h3>
+
+<%= @album.title %>
+<%= render 'button', album: @album, type: :edit %>
+<%= render 'button', album: @album, type: :delete %>
+<br>
+<br>
+<a href="<%= band_url(@album.band)%>">Back to Band Page</a>

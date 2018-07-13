@@ -1,0 +1,9 @@
+<% action = (type == :edit ? edit_album_url(album) : album_url(album)) %>
+<% method = (type == :edit ? 'get' : 'delete') %>
+<% button_txt = (type == :edit ? 'Edit' : 'Delete') %>
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%=method%>">
+  <%= auth_token %>
+  <input type="submit" value="<%= button_txt%> Album">
+</form>

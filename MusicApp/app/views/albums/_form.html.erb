@@ -1,0 +1,58 @@
+<%= display_errors %>
+
+<% action = (type == :new ? albums_url : album_url(album)) %>
+<% method = (type == :new ? 'post' : 'patch') %>
+<% button_txt = (type == :new ? 'Add' : 'Edit') %>
+<br>
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= auth_token %>
+
+  <label for="album_title">
+    Album Title
+    <br>
+    <input type="text" name="album[title]" value="<%= album.title %>">
+    <br>
+  </label>
+
+  <label for="band">
+    <br>
+    Band
+    <br>
+    <select name="album[band_id]">
+      <% Band.all.each do |band| %>
+        <option
+          <%= "selected" if album.band_id == band.id %>
+          value="<%= band.id %>">
+          <%= band.name %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+
+  <label for="album_year">
+    <br>
+    <br>
+    Year
+    <br>
+    <input type="text" name="album[year]" value="<%= album.year %>">
+  </label>
+
+  <label for="album_type">
+    <br>
+    <br>
+    <input type="radio" name="album[live]" value="<%= true %>"
+      <%= "checked" if album.live %>>
+    Live
+    <input type="radio" name="album[live]" value="<%= false %>"
+      <%= "checked" unless album.live %>>
+    Studio
+  </label>
+  <br>
+  <br>
+  <input type="submit" value="<%= button_txt %> Album">
+</form>
+
+<br>
+<br>

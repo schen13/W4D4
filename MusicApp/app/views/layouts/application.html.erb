@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <header>
+    <h1>Music App</h1>
+    <nav>
+      <ul>
+        <% if logged_in? %>
+          Hello, <%= current_user.email %>!
+          <br>
+          <li>
+            <form action="<%= session_url %>" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <%= auth_token %>
+              <input type="submit" value="Log Out">
+            </form>
+          </li>
+        <% else %>
+          <!-- <form action="new_user_url" method="post">
+            <input type="hidden" name="authenticity_token" value="<%#= form_authenticity_token %>">
+            <input type="submit" value="Sign Up!">
+          </form>
+          <form action="session_url" method="post">
+            <input type="hidden" name="authenticity_token" value="<%#= form_authenticity_token %>">
+            <input type="submit" value="Sign Out">
+          </form> -->
+          <li><a href="<%= new_user_url %>">Sign Up</a></li>
+          <li><a href="<%= new_session_url %>">Sign In</a></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+
+  <br>
+
+  <body>
+    <%= yield %>
+  </body>
+
+  <footer>
+    <p>MusicApp Inc. © 2018</p>
+    <p><%= yield :footer %></p>
+  </footer>
+</html>

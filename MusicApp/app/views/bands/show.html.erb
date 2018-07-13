@@ -1,0 +1,23 @@
+<h3>Band Page</h3>
+
+<%= @band.name %>
+<% @band.albums.each do |album| %>
+  <br>
+  <a href="<%=album_url(album)%>"><%= album.title %></a>
+<% end %>
+<br>
+<form action="<%= new_band_album_url(@band.id) %>" method="post">
+  <input type="hidden" name="_method" value="get">
+  <%= auth_token %>
+  <input type="submit" value="Add Album">
+</form>
+
+<br>
+<br>
+
+<%= render 'button', band: @band, type: :edit %>
+<%= render 'button', band: @band, type: :delete %>
+
+<br>
+<br>
+<a href="<%= bands_url%>">Back to Band List</a>
